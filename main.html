@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const hands = ["Rock", "Paper", "Scissors"];
+      let computerScore = 0;
+      let playerScore = 0;
+
+      function capitalize(text) {
+        return text[0].toUpperCase() + text.slice(1).toLowerCase();
+      }
+
+      function computerPlay() {
+        return hands[Math.floor(Math.random() * 3)];
+      }
+
+      function playRound(playerSelection, computerSelection) {
+        if (!hands.includes(capitalize(playerSelection))) {
+          return "Enter a valid selection! Rock, Paper, or Scissors!";
+        }
+
+        if (playerSelection.toLowerCase() == computerSelection.toLowerCase()) {
+          return "It's a draw! You both played " + capitalize(playerSelection);
+        } else if (
+          (playerSelection.toLowerCase() === "rock" &&
+            computerSelection.toLowerCase() !== "paper") ||
+          (playerSelection.toLowerCase() === "paper" &&
+            computerSelection.toLowerCase() !== "scissors") ||
+          (playerSelection.toLowerCase() === " scissors" &&
+            computerSelection.toLowerCase() !== "rock")
+        ) {
+          playerScore++;
+          return (
+            "You Win! " +
+            capitalize(playerSelection) +
+            " beats " +
+            computerSelection
+          );
+        } else {
+          computerScore++;
+          return (
+            "You Lose! " +
+            computerSelection +
+            " beats " +
+            capitalize(playerSelection)
+          );
+        }
+      }
+
+      function game() {
+        while (true) {
+          let playerSelection = prompt("Your Turn!");
+          let computerSelection = computerPlay();
+          console.log(playRound(playerSelection, computerSelection));
+          if (playerScore == 3) {
+            return console.log("You Win!");
+          } else if (computerScore == 3) {
+            return console.log("You Lose!");
+          }
+          continue;
+        }
+      }
+
+      game();
+    </script>
+  </body>
+</html>
