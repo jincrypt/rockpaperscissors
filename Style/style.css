@@ -1,0 +1,76 @@
+html {
+    height: 100%;
+    width: 80%;
+    min-height: 100%;
+    margin: auto;
+  }
+
+.title {
+    text-align:center;
+    grid-area: title;
+    font-size:24px;
+    margin-top: 20px;
+}
+
+h2 {
+    padding: 20px;
+    font-size: 24px;
+}
+
+p {
+    font-size: 20px;
+
+}
+#computerBoard {
+    grid-area: computerBoard;
+    align-self: center;
+    text-align: center;
+    justify-self:center;
+}
+
+#playerBoard {
+    text-align: center;
+    align-self: center;
+    justify-self:center;
+    grid-area: playerBoard;
+}
+
+#buttons {
+    display: flexbox;
+    grid-area:buttons;
+    justify-self:center;
+}
+.button{
+    height:22px;
+    width: 67px;
+    text-align:center;
+
+    margin: 0 5px 0 5px;
+
+}
+#resetButton {
+    grid-area: resetButton;
+    justify-self: center;
+    height: 22px;
+}
+
+#result {
+    grid-area: result;
+    white-space: pre;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: 15% 35% 35% 15%;
+    grid-template-rows: 20vh 40vh 5vh 5vh 1fr;
+    grid-template-areas:
+        ". title title ."
+        "playerBoard result result computerBoard"
+        ". buttons buttons ."
+        " . resetButton resetButton ."
+        ". . . .";
+}
+

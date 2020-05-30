@@ -3,69 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <title>Document</title>
+    <link rel="stylesheet" href="./Style/reset.css">
+    <link rel="stylesheet" href="./Style/style.css">
   </head>
   <body>
-    <script>
-      const hands = ["Rock", "Paper", "Scissors"];
-      let computerScore = 0;
-      let playerScore = 0;
+    <main id='main'>
+      
+      <h1 class='title'>Rock, Paper, Scissors!</h1>
+      
+      <div id='result'></div>
 
-      function capitalize(text) {
-        return text[0].toUpperCase() + text.slice(1).toLowerCase();
-      }
+      <div id='playerBoard'>
+        <h2>Player</h2>
+        <p id='playerScoreBoard'>0</p>
+      </div>
 
-      function computerPlay() {
-        return hands[Math.floor(Math.random() * 3)];
-      }
-
-      function playRound(playerSelection, computerSelection) {
-        if (!hands.includes(capitalize(playerSelection))) {
-          return "Enter a valid selection! Rock, Paper, or Scissors!";
-        }
-
-        if (playerSelection.toLowerCase() == computerSelection.toLowerCase()) {
-          return "It's a draw! You both played " + capitalize(playerSelection);
-        } else if (
-          (playerSelection.toLowerCase() === "rock" &&
-            computerSelection.toLowerCase() !== "paper") ||
-          (playerSelection.toLowerCase() === "paper" &&
-            computerSelection.toLowerCase() !== "scissors") ||
-          (playerSelection.toLowerCase() === " scissors" &&
-            computerSelection.toLowerCase() !== "rock")
-        ) {
-          playerScore++;
-          return (
-            "You Win! " +
-            capitalize(playerSelection) +
-            " beats " +
-            computerSelection
-          );
-        } else {
-          computerScore++;
-          return (
-            "You Lose! " +
-            computerSelection +
-            " beats " +
-            capitalize(playerSelection)
-          );
-        }
-      }
-
-      function game() {
-        while (true) {
-          let playerSelection = prompt("Your Turn!");
-          let computerSelection = computerPlay();
-          console.log(playRound(playerSelection, computerSelection));
-          if (playerScore == 3) {
-            return console.log("You Win!");
-          } else if (computerScore == 3) {
-            return console.log("You Lose!");
-          }
-          continue;
-        }
-      }
-
-      game();
-    </script>
+      <div id="computerBoard">
+        <h2>Computer</h2>
+        <p id='computerScoreBoard'>0</p>
+      </div>
+    </main>
+    <script src="./Script/function.js"></script>
   </body>
 </html>
