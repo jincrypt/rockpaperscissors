@@ -56,6 +56,7 @@ function game(playerSelection, computerSelection) {
             computerScore += 1;
         }
         resultMessage.textContent = result.statement;
+        return;
     }
 
     if (playerScore === gameMax) {
@@ -63,30 +64,48 @@ function game(playerSelection, computerSelection) {
     } else if (computerScore === gameMax) {
         resultMessage.textContent = 'You Lose. Press Restart to Play Again';
     }
+    createResetButton();
 }
 
+const main = document.querySelector('main');
 const buttons = document.createElement('div');
 buttons.setAttribute("id", "buttons");
-
-OPTIONS.forEach(e => {
-    let button = document.createElement('button');
-    button.setAttribute('id', e.name);
-    button.classList.add('button');
-    button.textContent = e.name[0].toUpperCase()+e.name.slice(1);
-    button.addEventListener('click', (e) => game(button.id, computerPlay()));
-    buttons.append(button);
-});
-
-const main = document.querySelector('main');
-const resetButton = document.createElement('button');
-resetButton.classList.add('button');
-resetButton.textContent = 'reset';
-resetButton.addEventListener('click', (e) => {
-    playerScore = 0;
-    computerScore = 0;
-    document.querySelectorAll('button').forEach(btn => {btn.removeAttribute('disabled')});
-    resultMessage.textContent = 'New Game! Select your weapon.';
-});
-
 main.append(buttons);
-main.append(resetButton);
+
+function clearButtons() {
+    while (buttons.hasChildNodes()) {
+        buttons.removeChild(buttons.firstChild);
+    }
+}
+
+function createButtons() {
+    clearButtons();
+
+    OPTIONS.forEach(e => {
+        let button = document.createElement('button');
+        button.setAttribute('id', e.name);
+        button.classList.add('button');
+        button.textContent = e.name[0].toUpperCase()+e.name.slice(1);
+        button.addEventListener('click', (e) => game(button.id, computerPlay()));
+        buttons.append(button);
+    });
+}
+
+function createResetButton() {
+    clearButtons();
+
+    const resetButton = document.createElement('button');
+    resetButton.classList.add('button');
+    resetButton.textContent = 'Play Again';
+    resetButton.addEventListener('click', (e) => {
+        playerScore = 0;
+        computerScore = 0;
+        document.querySelectorAll('button').forEach(btn => {btn.removeAttribute('disabled')});
+        resultMessage.textContent = 'New Game! Select your weapon.';
+        createButtons();
+    });
+    buttons.append(resetButton);
+}
+
+
+createButtons();
