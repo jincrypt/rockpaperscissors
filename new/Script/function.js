@@ -1,7 +1,6 @@
 let gameMax = 2;
 let playerScore = 0;
 let computerScore = 0;
-let playerPlay = '';
 const resultMessage = document.querySelector('#result');
 
 const OPTIONS = [
@@ -46,6 +45,11 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+function updateScore() {
+    document.querySelector('#playerScore').textContent = playerScore;
+    document.querySelector('#computerScore').textContent = computerScore;
+}
+
 function game(playerSelection, computerSelection) {
     let result = {};
     if (playerScore < gameMax && computerScore < gameMax) {
@@ -55,6 +59,7 @@ function game(playerSelection, computerSelection) {
         } else if (result.result === 'Lose') {
             computerScore += 1;
         }
+        updateScore();
         resultMessage.textContent = result.statement;
         return;
     }
@@ -67,10 +72,11 @@ function game(playerSelection, computerSelection) {
     createResetButton();
 }
 
-const main = document.querySelector('main');
+// const main = document.querySelector('main');
 const buttons = document.createElement('div');
 buttons.setAttribute("id", "buttons");
-main.append(buttons);
+document.querySelector('#box').append(buttons);
+// main.append(buttons);
 
 function clearButtons() {
     while (buttons.hasChildNodes()) {
@@ -100,6 +106,7 @@ function createResetButton() {
     resetButton.addEventListener('click', (e) => {
         playerScore = 0;
         computerScore = 0;
+        updateScore();
         document.querySelectorAll('button').forEach(btn => {btn.removeAttribute('disabled')});
         resultMessage.textContent = 'New Game! Select your weapon.';
         createButtons();

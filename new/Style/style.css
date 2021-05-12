@@ -4,6 +4,57 @@
     left:50%;
     transform: translate(-50%, -50%);
     background-color:blue;
-    height:30vw;
-    width:60vw;
+    height:40vw;
+    width:70vw;
+
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        "title scoreboard ."
+        "title scoreboard ."
+        "result result result"
+        "buttons buttons buttons";
+}
+
+#buttons {
+    grid-area: buttons;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%,0%)
+}
+
+#title {
+    grid-area: title;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    /* transform: translate(-50%,0); */
+}
+
+#scoreBoard {
+    position: absolute;
+    display: flex;
+    left: 50%;
+    top: 0px;
+    transform: translate(-50%,0%);
+    background: brown;
+    border-radius: 20px;
+
+
+}
+
+#playerScore, #computerScore {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    justify-content: center; /* horizontal centering */
+    align-items: center; /* vertical centering */
+    margin: 5px 16px 0 16px;
+}
+
+#result {
+    grid-area: result;
 }
