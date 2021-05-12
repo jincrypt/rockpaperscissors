@@ -75,7 +75,7 @@ function game(playerSelection, computerSelection) {
 // const main = document.querySelector('main');
 const buttons = document.createElement('div');
 buttons.setAttribute("id", "buttons");
-document.querySelector('#box').append(buttons);
+document.querySelector('#grid-container').append(buttons);
 // main.append(buttons);
 
 function clearButtons() {
